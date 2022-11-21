@@ -1,22 +1,19 @@
-import express from 'express';
-import helmet from 'helmet';
+import http from 'http';
 import * as dotenv from 'dotenv';
 
-import { mongoConnect } from './apartment-rest-api/services/mongo.js';
+import { mongoConnect } from './services/mongo.js';
+import app from './app.js';
 
 dotenv.config();
 
-const app = express();
-const PORT = 3000;
+const server = http.createServer(app);
 
-// Middlewares
-// Security
-app.use(helmet());
+const PORT = 3000;
 
 async function startServer() {
   await mongoConnect();
 
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
   });
 }
