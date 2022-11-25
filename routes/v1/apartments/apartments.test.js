@@ -187,7 +187,7 @@ describe('Apartments API', () => {
   describe('Test DELETE /v1/apartments', () => {
     const apartmentId = '61fa867b-ce4b-4bac-adde-cf223194d59d';
 
-    test('Delete existing document', async () => {
+    test('Delete existing apartment.', async () => {
       const response = await supertest(app).delete(
         `/v1/apartments?apartmentId=${apartmentId}`
       );

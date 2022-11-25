@@ -1,4 +1,4 @@
-import apartmentsDB from './apartments.mongo.js';
+import apartmentsDB from './apartments.schema.js';
 
 export async function getAllApartments() {
   return await apartmentsDB.find({}, { '_id': 0, '__v': 0 });
