@@ -19,11 +19,36 @@ const apartmentsSchema = new mongoose.Schema({
   area: { type: Number, required: true },
   storage: { type: Boolean, required: true },
   yearOfConstruction: { type: Date, required: true },
-  commentsAboutTenants: { type: Array, required: true },
-  landlordComments: { type: Array, required: true },
+  commentsAboutTenants: [
+    {
+      author: { type: String, required: true },
+      date: { type: Date, required: true },
+      comment: { type: String, required: true }
+    }
+  ],
+  landlordComments: [
+    {
+      author: { type: String, required: true },
+      date: { type: Date, required: true },
+      comment: { type: String, required: true }
+    }
+  ],
   pictures: { type: Array, required: true },
-  renovations: { type: Array, required: true },
-  tenantsComments: { type: Array, required: true }
+  renovations: [
+    {
+      when: { type: Date, required: true },
+      what: { type: String, required: true },
+      why: { type: String, required: true },
+      who: { type: String, required: true }
+    }
+  ],
+  tenantsComments: [
+    {
+      author: { type: String, required: true },
+      date: { type: Date, required: true },
+      comment: { type: String, required: true }
+    }
+  ]
 });
 
 export default mongoose.model('Apartment', apartmentsSchema);

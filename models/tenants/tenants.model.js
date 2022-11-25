@@ -23,6 +23,7 @@ export async function updateTenant(updatedTenant) {
     }
   );
 }
+
 export async function deleteTenant(tenantId) {
   return await tenantsDB.findOneAndDelete({ tenantId });
 }

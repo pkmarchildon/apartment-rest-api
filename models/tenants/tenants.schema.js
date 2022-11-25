@@ -9,7 +9,13 @@ const tenantsSchema = new mongoose.Schema({
   rentYears: { type: Number, required: true },
   score: { type: Number, required: true },
   references: { type: Array, required: true },
-  comments: { type: Array, required: true }
+  comments: [
+    {
+      author: { type: String, required: true },
+      date: { type: Date, required: true },
+      comment: { type: String, required: true }
+    }
+  ]
 });
 
 export default mongoose.model('Tenant', tenantsSchema);
