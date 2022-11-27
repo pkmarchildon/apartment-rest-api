@@ -7,14 +7,18 @@ import {
   updateApartment,
   deleteApartment
 } from '../../../models/apartments/apartments.model.js';
+import { getPagination, getParams } from '../../../services/query.js';
 
 export async function httpGetApartments(req, res) {
-  const params = req.query;
+  const params = getParams(req.query);
+  const { limit, skip } = getPagination(req.query);
 
   if (Object.keys(params).length !== 0) {
-    return res.status(200).json(await getFilteredApartments(params));
+    return res
+      .status(200)
+      .json(await getFilteredApartments(params, limit, skip));
   } else {
-    return res.status(200).json(await getAllApartments());
+    return res.status(200).json(await getAllApartments(limit, skip));
   }
 }
 

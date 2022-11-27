@@ -1,11 +1,17 @@
 import apartmentsDB from './apartments.schema.js';
 
-export async function getAllApartments() {
-  return await apartmentsDB.find({}, { '_id': 0, '__v': 0 });
+export async function getAllApartments(limit, skip) {
+  return await apartmentsDB
+    .find({}, { '_id': 0, '__v': 0 })
+    .skip(skip)
+    .limit(limit);
 }
 
-export async function getFilteredApartments(params) {
-  return await apartmentsDB.find(params, { '_id': 0, '__v': 0 });
+export async function getFilteredApartments(params, limit, skip) {
+  return await apartmentsDB
+    .find(params, { '_id': 0, '__v': 0 })
+    .skip(skip)
+    .limit(limit);
 }
 
 export async function createApartment(apartment) {
